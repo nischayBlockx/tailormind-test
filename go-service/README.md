@@ -102,5 +102,10 @@ curl -X POST http://localhost:8081/api/v1/students \
   curl -X GET http://localhost:8081/api/v1/students/e4eaaaf2-d142-11e1-b3e4-080027620cdd/report --output student_report.pdf
 ```
 
+**Get PDF Report Using HTTP Client**
+```bash
+curl -X GET "http://localhost:5007/api/v1/students/123/report-from-http" -o student_123_report_http.pdf
+
+```
   NOte: Student ID is passed manually now. You can use github.com/google/uuid to generate UUIDs in backend before insert to ensure stable and unique identifiers.
 

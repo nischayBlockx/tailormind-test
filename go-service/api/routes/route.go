@@ -13,6 +13,7 @@ func SetupRouter() *gin.Engine {
 	r.POST("/api/v1/students", handler.AddStudentData)
 	r.PUT("/api/v1/students", handler.UpdateStudentData)
 	r.DELETE("/api/v1/students/:id", handler.DeleteStudentData)
+	r.GET("/api/v1/students/:id/report-from-http", handler.GeneratePDFReportViaHttpClient)
 
 	return r
 }

@@ -3,23 +3,35 @@ package client
 import (
 	"encoding/json"
 	"fmt"
+	"go-service/internal/models"
 	"net/http"
 )
 
-func FetchStudentData(id string) (*Student, error) {
-	url := fmt.Sprintf("http://localhost:3000/api/v1/students/%s", id)
+type Client struct {
+	BaseURL string
+}
+
+func NewClient(baseURL string) *Client {
+	return &Client{BaseURL: baseURL}
+}
+
+func (c *Client) GetStudentByIDHttp(id string) (*models.StudentDetails, error) {
+	url := fmt.Sprintf("%s/api/v1/students/%s", c.BaseURL, id)
 	resp, err := http.Get(url)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to call student service: %w", err)
 	}
 	defer resp.Body.Close()
+
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("failed to fetch student data, status: %d", resp.StatusCode)
+		return nil, fmt.Errorf("student service returned status: %d", resp.StatusCode)
 	}
-	var student Student
-	err = json.NewDecoder(resp.Body).Decode(&student)
-	if err != nil {
+
+	var result struct {
+		Data models.StudentDetails `json:"data"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
 		return nil, err
 	}
-	return &student, nil
+	return &result.Data, nil
 }
