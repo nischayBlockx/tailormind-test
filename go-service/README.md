@@ -1,12 +1,14 @@
-This Go microservice enables the following functionality:
+# PDF Report Service
 
-Add, update, delete student records
+**This Go microservice enables the following functionality:**
+
+ADD, UPDATE, DELETE and GET Student records
 
 Generate a downloadable PDF report for a student by their ID
 
 It connects to a PostgreSQL database and serves REST APIs using the Gin framework.
 
-
+```text
 go-service/
 ├── api/handler            # HTTP handlers
 ├── internal/models        # Data structures
@@ -18,35 +20,44 @@ go-service/
 ├── go.mod / go.sum
 ├── .env                   # Environment variables
 
-**Features**
+```
+---
+
+## Features
 
 #RESTful API to:
 
-POST /api/v1/students - Add student
+- POST /api/v1/students - Add student
 
-PUT /api/v1/students - Update student
+- PUT /api/v1/students - Update student
 
-DELETE /api/v1/students/:id - Delete student
+- DELETE /api/v1/students/:id - Delete student
 
-GET /api/v1/students/:id/report - Generate and download student PDF report
+- GET /api/v1/students/:id/report - Generate and download student PDF report
 
+---
 
-
-Create your DB manually in pgAdmin or CLI:
-
-CREATE DATABASE student_db;
-
-Then apply migrations:
+**Create your DB manually in pgAdmin or CLI:**
 
 ```bash
+CREATE DATABASE student_db;
+```
+
+**Then apply migrations:**
+
+```bash
+
 export DATABASE_URL=postgres://<user>@localhost:5432/student_db?sslmode=disable
 migrate -path scripts/migrations -database "$DATABASE_URL" up
+
 ```
 
 
 
 **Running the Service**
 ```bash
+go mod tidy
+
 go run cmd/main/main.go
 
 ```
@@ -93,4 +104,3 @@ curl -X POST http://localhost:8081/api/v1/students \
 
   NOte: Student ID is passed manually now. You can use github.com/google/uuid to generate UUIDs in backend before insert to ensure stable and unique identifiers.
 
-  
