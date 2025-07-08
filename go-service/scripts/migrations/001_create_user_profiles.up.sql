@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS user_profiles (
+    id UUID PRIMARY KEY,
+    name TEXT,
+    email TEXT,
+    phone TEXT,
+    gender TEXT,
+    dob DATE,
+    class_name TEXT,
+    section_name TEXT,
+    roll TEXT,
+    father_name TEXT,
+    father_phone TEXT,
+    mother_name TEXT,
+    mother_phone TEXT,
+    guardian_name TEXT,
+    guardian_phone TEXT,
+    relation_of_guardian TEXT,
+    current_address TEXT,
+    permanent_address TEXT,
+    admission_dt DATE,
+    reporter_name TEXT
+);

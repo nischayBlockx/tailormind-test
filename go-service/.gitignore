@@ -1,0 +1,43 @@
+# Binaries
+/go-service
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Go build artifacts
+*.test
+*.out
+
+# Logs
+*.log
+
+# Dependency directories
+vendor/
+
+# IDE/editor configs
+.vscode/
+.idea/
+
+# Environment variables
+.env
+
+
+# Migration tool artifacts
+*.db
+migrations/*.lock
+
+# Test coverage reports
+coverage.out
+
+# Temp files
+tmp/
+*.swp
+
+# Module caches (optional)
+go.sum
